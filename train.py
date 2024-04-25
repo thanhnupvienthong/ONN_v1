@@ -8,6 +8,7 @@ LastEditTime: 2021-12-23 23:56:38
 #!/usr/bin/env python
 # coding=UTF-8
 import argparse
+import socket
 import os
 from typing import Iterable
 
@@ -131,6 +132,12 @@ def main() -> None:
 
     if(int(configs.run.deterministic) == True):
         set_torch_deterministic()
+        
+    # if torch.cuda.is_available():
+    #     print("Training on GPU")
+    # else:
+    #     print("Training on CPU")
+
 
     model = builder.make_model(device, int(configs.run.random_state) if int(
         configs.run.deterministic) else None)
@@ -169,7 +176,8 @@ def main() -> None:
     epoch = 0
     try:
         lg.info(
-            f"Experiment {configs.run.experiment} ({experiment.experiment_id}) starts. Run ID: ({mlflow.active_run().info.run_id}). PID: ({os.getpid()}). PPID: ({os.getppid()}). Host: ({os.uname()[1]})")
+           # f"Experiment {configs.run.experiment} ({experiment.experiment_id}) starts. Run ID: ({mlflow.active_run().info.run_id}). PID: ({os.getpid()}). PPID: ({os.getppid()}). Host: ({os.uname()[1]})")
+            f"Experiment {configs.run.experiment} ({experiment.experiment_id}) starts. Run ID: ({mlflow.active_run().info.run_id}). PID: ({os.getpid()}). PPID: ({os.getppid()}). Host: ({socket.gethostname()})")
         lg.info(configs)
         prune_finegrain = False
         if int(configs.checkpoint.resume) and len(configs.checkpoint.restore_checkpoint) > 0:
@@ -189,6 +197,11 @@ def main() -> None:
             if int(configs.prune.topk) > 0:
                 model.get_finegrain_drop_mask(topk=int(configs.prune.topk))
                 prune_finegrain = True
+        if torch.cuda.is_available():
+            print("Training on GPU")
+            
+        else:
+            print("Training on CPU")
 
         for epoch in range(1, int(configs.run.n_epochs)+1):
             train(
@@ -219,6 +232,7 @@ def main() -> None:
             )
     except KeyboardInterrupt:
         lg.warning("Ctrl-C Stopped")
+
 
 
 if __name__ == "__main__":
