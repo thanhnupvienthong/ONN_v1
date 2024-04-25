@@ -1,8 +1,6 @@
 # SqueezeLight
 
-By [Jiaqi Gu](https://github.com/JeremieMelo), [Chenghao Feng](https://github.com/Fengchenghao1996), Zheng Zhao, Zhoufeng Ying, Mingjie Liu, Ray T. Chen and David Z. Pan.
 
-This repo is the official implementation of "[SqueezeLight: Towards Scalable Optical Neural Networks with Multi-Operand Ring Resonators](https://doi.org/10.23919/DATE51398.2021.9474147)".
 
 # Introduction
 **SqueezeLight** is a scalable optical neural network architecture based on multi-operand micro-ring resonators (MORRs), first experimentally demonstrated [here](https://aip.scitation.org/doi/abs/10.1063/1.5126517).
