@@ -36,6 +36,7 @@ class ConvBlock(nn.Module):
         trainable_morr_scale: bool = False,
         trainable_morr_bias: bool = False,
         device: Device = torch.device("cuda"),
+        dropout_rate: float = 0.04
     ) -> None:
         super().__init__()
         self.conv = AllPassMORRCirculantConv2d(
@@ -60,9 +61,13 @@ class ConvBlock(nn.Module):
         self.bn = nn.BatchNorm2d(out_channel)
 
         self.activation = Hardtanh(-1, 1, inplace=True)
+        self.dropout = nn.Dropout(dropout_rate)  # add dropout layer
 
     def forward(self, x: Tensor) -> Tensor:
-        return self.activation(self.bn(self.conv(x)))
+        x = self.activation(self.bn(self.conv(x)))
+        x = self.dropout(x)  # apply dropout
+        return x
+    #    return self.activation(self.bn(self.conv(x)))
 
 
 class LinearBlock(nn.Module):
