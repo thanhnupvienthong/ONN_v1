@@ -56,13 +56,21 @@ checkpoint:
 model:
   name: "MORR_CLASS_CNN"
   mode: "weight"
-  kernel_list: [32, 32]
-  kernel_size_list: [5, 5]
-  hidden_list: []
-  block_list: [3, 3, 3]
-  stride_list: [2, 2]
-  padding_list: [1, 1]
-  pool_out_size: 5
+  # kernel_list: [32, 32]
+  # kernel_size_list: [5, 5]
+  # hidden_list: []
+  # block_list: [3, 3, 3]
+  # stride_list: [2, 2]
+  # padding_list: [1, 1]
+  # pool_out_size: 5
+  kernel_list: [64, 64, 128, 128, 256, 256, 256, 512, 512, 512, 512, 512, 512]
+  maxpool_kernel_list: ['M', 'M', 'M', 'M', 'M']
+  kernel_size_list:  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+  hidden_list:  [4096, 4096]   
+  block_list:  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  stride_list: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  padding_list: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  pool_out_size: 7
   act: relu
   act_thres: 10
   norm: bn
