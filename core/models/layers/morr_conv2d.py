@@ -294,7 +294,7 @@ class AllPassMORRCirculantConv2d(nn.Module):
 
     def input_modulator(self, x):
         ### voltage to power, which is proportional to the phase shift
-        return x * x
+        return x 
         # return x
 
     def set_crosstalk_coupling_matrix(self, coupling_factor, drop_perc=0):

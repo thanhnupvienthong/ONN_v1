@@ -24,8 +24,8 @@ scheduler:
 
 run:
   experiment: "default"
-  n_epochs: 100
-  batch_size: 32
+  n_epochs: 20
+  batch_size: 16
   use_cuda: 1
   gpu_id: 0
   deterministic: 1

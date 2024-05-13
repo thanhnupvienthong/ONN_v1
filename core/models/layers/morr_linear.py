@@ -319,7 +319,7 @@ class AllPassMORRCirculantLinear(nn.Module):
 
     def input_modulator(self, x):
         ### voltage to power, which is proportional to the phase shift
-        return x * x
+        return x
 
     def set_crosstalk_coupling_matrix(self, coupling_factor, drop_perc=0):
         ### crosstalk coupling matrix is a symmetric matrix, but the intra-MORR crosstalk can be taken as a round-trip phase shift scaling factor, which is proportional to the number of segments after pruned.

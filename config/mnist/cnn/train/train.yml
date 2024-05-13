@@ -6,6 +6,7 @@ optimizer:
   name: adam
   lr: 0.002
   weight_decay: 0.0001
+  
 
 scheduler:
   name: cosine
@@ -18,8 +19,8 @@ run:
   batch_size: 32
 
 quantize:
-  weight_bit: 8
-  input_bit: 8
+  weight_bit: 7
+  input_bit: 7
   v_pi: 4.36
   v_max: 10.8
 
